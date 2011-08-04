@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<title>AJAX w/ jQuery</title>
+		<link href="presentation/fathom.sample.css" rel="stylesheet" type="text/css" />
+		<script src="presentation/jquery.min.js"></script>
+		<script src="presentation/fathom.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#presentation").fathom();
+		});
+		</script>
+		<link rel="stylesheet" href="presentation/style.css">
+		
+	</head>
+	<body>
+	
+		<div id="presentation">
+			<div class="slide">
+				<h1 class="title"><span>AJAX</span> w/ jQuery</h1>
+				<div class="footer">
+					Presented by <a href="mailto:eddy.hernandez@rackspace.com">Eddy Hernandez</a>
+				</div>
+			</div>
+			<div class="slide">
+				<h2>AJAX defined</h2>
+				<div class="content">
+					<ul>
+						<li style="text-decoration:line-through;">AJAX = asynchronous JavaScript and XML</li>
+						<li>AJAX = asynchronous JavaScript and XMLHttpRequest (XHR)</li>
+					</ul>
+				</div>
+			</div>
+			<div class="slide">
+				<h2>High Level AJAX</h2>
+				<div class="content">
+					<ul>
+						<li>$.post()
+							<ul>
+								<li>Load data (xml, json, script, or html) via a POST request</li>
+							</ul>
+						</li>
+						<li>$.get()
+							<ul>
+								<li>Load data (xml, json, script, or html) via a GET request</li>
+							</ul>
+						</li>
+						<li>$.getJSON()
+							<ul>
+								<li>Loads JSON using a GET request</li>
+							</ul>
+						</li>
+						<li>.load()
+							<ul>
+								<li>Request html and inject into DOM</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="slide">
+				<h2>Limitations</h2>
+				<div class="content">
+					<ul>
+						<li>Lack of control for requests</li>
+						<li>No callback on Error</li>
+						<li>No callback on Completion</li>
+					</ul>
+				</div>
+			</div>
+			<div class="slide">
+				<h2>$.ajax()</h2>
+				<div class="content">
+					<pre>
+$.ajax({
+	url: &quot;mydomain.com/url&quot;,
+	type: &quot;POST&quot;,
+	cache: &quot;false&quot;,
+	dataType: &quot;json&quot;, //xml/html/script/
+	data: &quot;foo=bar&amp;bar=foo&quot;, // map or string
+	contentType: &quot;application/json&quot;,
+	
+	complete: function() {
+		//called when complete
+	},
+	success: function() {
+		//called when successful
+	},
+	error: function() {
+		//called when there is an error
+	}
+});
+					</pre>
+				</div>
+				
+			</div>
+			<div class="slide">
+				<h2>Example</h2>
+				<div class="content">
+					<ul>
+						<li><a href="example-1.html">Basic Form Handling</a>
+							<ul>
+								<li>Hijack Form Submit</li>
+								<li>Serialize Inputs</li>
+								<li>Simulate Form Submission with $.ajax()</li>
+							</ul>
+						</li>
+						<li><a href="example-2.html">Advanced Form Handling</a>
+							<ul>
+								<li>Redirect Form Action</li>
+								<li>Handle Requests on Error, Success, and Complete</li>
+								<li>Simulate Advanced POSTS with $.ajax()</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="slide">
+				<h1 class="title">Questions?</h1>
+				<div class="footer">
+					Email: <a href="mailto:eddy.hernandez@rackspace.com">eddy.hernandez@rackspace.com</a>
+				</div>
+			</div>
+			
+		</div>
+	
+	</body>
+</html>

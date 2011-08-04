@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>AJAX w/ jQuery - Form Handling</title>
+		<link rel="stylesheet" href="presentation/style.css">
+		<script src="presentation/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			// setup messaging
+			var msg = $('#messaging'),
+			msgTitle = msg.find('h4'),
+			msgBody = msg.find('p');
+			
+			
+				$('form').submit(function(){
+					var theForm = $(this),
+					theUrl = theForm.attr('action');
+					// alert($(this).serialize());
+					
+					if ($('#createError').attr('checked')) {
+						theUrl = 'error.html';
+					}
+
+					$.ajax({
+						url: theUrl,
+						type: "GET",
+						cache: "false",
+						dataType: "html", //xml/html/script/
+						data: theForm.serialize(), // map or string
+						// contentType: "application/json",
+
+						complete: function() {
+							//called when complete
+							$('input[type=text]').val('');
+							$('#createError').removeAttr('checked');
+						},
+						success: function(data, textStatus, jqXHR) {
+							//called when successful
+							msgTitle.text(textStatus);
+							msgBody.text('Woo we did it');
+							msg.hide().attr('class', 'success').fadeIn();
+						},
+						error: function(jqXHR) {
+							//called when there is an error
+							msgTitle.text(jqXHR.statusText);
+							msgBody.text('There was an error');
+							msg.hide().attr('class', 'error').fadeIn();
+						}
+					});
+
+					return false;
+				});
+			
+		});
+		</script>
+		
+	</head>
+	<body>
+		<h2>Advanced Form Handling</h2>
+		<div class="content">
+			<form action="index.html" method="get" accept-charset="utf-8">
+				First Name: <input name="firstName" value=""> 
+				Last Name: <input name="lastName" value=""> 
+				Create Error: <input type="checkbox" name="createError" id="createError" value="">
+				<p><input type="submit" value="submit"></p>
+			</form>
+			<div id="messaging">
+				<h4>Message</h4>
+				<p>Body</p>
+			</div>
+		</div>
+	
+	</body>
+</html>

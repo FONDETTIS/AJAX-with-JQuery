@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>AJAX w/ jQuery - Form Handling</title>
+		<link rel="stylesheet" href="presentation/style.css">
+		<script src="presentation/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			// stop form from submitting on submit
+				// alert the serialized inputs
+				// simulate form submit with ajax
+			$('form').submit(function(){
+				var theForm = $(this);
+				// alert($(this).serialize());
+				
+				$.ajax({
+					url: theForm.attr('action'),
+					type: "GET",
+					cache: "false",
+					dataType: "html", //xml/html/script/
+					data: theForm.serialize(), // map or string
+					// contentType: "application/json",
+
+					complete: function() {
+						//called when complete
+						console.log('complete');
+					},
+					success: function() {
+						//called when successful
+						console.log('YAY');
+					},
+					error: function() {
+						//called when there is an error
+						console.log('Boo');
+					}
+				});
+				
+				return false;
+			});
+		});
+		</script>
+		
+	</head>
+	<body>
+		<h2>Basic Form Handling</h2>
+		<div class="content">
+			<form action="index.html" method="get" accept-charset="utf-8">
+				First Name: <input name="firstName" value=""> 
+				Last Name: <input name="lastName" value=""> 
+				Create Error: <input type="checkbox" name="createError" id="createError" value="foo" checked="checked">
+				<p><input type="submit" value="submit"></p>
+			</form>
+		</div>
+	
+	</body>
+</html>
